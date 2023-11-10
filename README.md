@@ -20,7 +20,7 @@ A library of all the games myself and my friends have played, how we rated them 
 
 <!-- Semantic versioning, beginning with version 1.0.0 and incremented as changes are made -->
 
-# A list of any libraries, frameworks, or packages that your application requires in order to properly function
+## A list of any libraries, frameworks, or packages that your application requires in order to properly function
 
 React, Express, React Router Dom, Mongoose, Mongo DB, Node JS
 
