@@ -29,4 +29,14 @@ app.delete("/reviews/:id", async (req, res) => {
   res.json(deletedReview);
 });
 
+app.put("/reviews/:id", async (req, res) => {
+  const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body);
+  res.json(updatedReview);
+});
+
+app.post("/reviews", async (req, res) => {
+  const newReview = await Review.create(req.body);
+  res.json(newReview);
+});
+
 app.listen(PORT, () => console.log(`App is running PORT ${PORT}`));
