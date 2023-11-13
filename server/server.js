@@ -24,4 +24,9 @@ app.get("/reviews", async (req, res) => {
   res.json(reviews);
 });
 
+app.delete("/reviews/:id", async (req, res) => {
+  const deletedReview = await Review.findByIdAndDelete(req.params.id);
+  res.json(deletedReview);
+});
+
 app.listen(PORT, () => console.log(`App is running PORT ${PORT}`));
