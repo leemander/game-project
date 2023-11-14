@@ -13,6 +13,7 @@ import Profile from "./components/Profile";
 function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
+
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
   console.log(isAuthenticated);
@@ -37,6 +38,7 @@ function App() {
       <BrowserRouter>
         <header>
           <h1>hAPIgamr</h1>
+
           <Profile></Profile>
           <LoginButton></LoginButton>
           {/* {isAuthenticated ? <LogOutButton /> : <LogInButton />} */}
