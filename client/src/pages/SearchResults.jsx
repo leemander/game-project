@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-export default function SearchResults() {
+export default function SearchResults({ games }) {
   const params = useParams();
   const [results, setResults] = useState([]);
 
   useEffect(() => {
     getResults();
-  }, []);
+  }, [games]);
 
   function converToTitleCase(string) {
     let stringArr = string.trim().toLowerCase().split(" ");
@@ -25,12 +25,11 @@ export default function SearchResults() {
     window.location.href = `./${converToTitleCase(params.query)}`;
   }
 
-  async function getResults() {
-    const API = `https://hapigamr.onrender.com/games?title=${converToTitleCase(
-      params.query
-    )}`;
-    const res = await axios.get(API);
-    setResults(res.data);
+  function getResults() {
+    const filteredGames = games.filter((game) =>
+      game.title.toLowerCase().includes(params.query.toLowerCase())
+    );
+    setResults(filteredGames);
   }
 
   return (

@@ -63,7 +63,10 @@ function App() {
           />
           <Route path="/about" element={<About />} />
           <Route path="/game/:id" element={<Game />} />
-          <Route path="/search/:query" element={<SearchResults />} />
+          <Route
+            path="/search/:query"
+            element={<SearchResults games={games} />}
+          />
 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
