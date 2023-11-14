@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import About from "./pages/About";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
+import SearchResults from "./pages/SearchResults";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
@@ -13,6 +14,8 @@ import Profile from "./components/Profile";
 function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
     getReviews();
@@ -53,11 +56,14 @@ function App() {
                 setGames={setGames}
                 reviews={reviews}
                 setReviews={setReviews}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
               />
             }
           />
           <Route path="/about" element={<About />} />
           <Route path="/game/:id" element={<Game />} />
+          <Route path="/search/:query" element={<SearchResults />} />
 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
