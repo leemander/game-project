@@ -27,7 +27,7 @@ app.post("/games", async (req, res) => {
   const newGame = {
     title: returnedGame.title,
     genre: returnedGame.genres[0].genre_name,
-    releaseYear: returnedGame.platforms[0].first_release_date,
+    releaseYear: returnedGame.platforms[0].first_release_date.slice(0, 4),
     userRating: returnedGame.moby_score,
     description: returnedGame.description,
     boxArtUrl: returnedGame.sample_cover.image,
