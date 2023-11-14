@@ -15,6 +15,7 @@ export default function SearchBar({ searchTerm, setSearchTerm }) {
         id="search"
         name="sarch"
         onChange={handleChange}
+        required
         type="text"
         value={searchTerm}
       />

@@ -10,15 +10,25 @@ export default function SearchResults() {
     getResults();
   }, []);
 
+  function converToTitleCase(string) {
+    let stringArr = string.trim().toLowerCase().split(" ");
+    stringArr = stringArr.map((word) => {
+      return word[0].toUpperCase() + word.slice(1);
+    });
+    return stringArr.join(" ");
+  }
+
   async function getResults() {
-    const API = `https://hapigamr.onrender.com/games?title=${params.query}`;
+    const API = `https://hapigamr.onrender.com/games?title=${converToTitleCase(
+      params.query
+    )}`;
     const res = await axios.get(API);
     setResults(res.data);
   }
 
   return (
     <main>
-      <h2>Results for "{params.query}"</h2>
+      <h2>Results for "{converToTitleCase(params.query)}"</h2>
       <ul>
         {results.map((result) => {
           return (
