@@ -14,8 +14,6 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user);
-  console.log(isAuthenticated);
   useEffect(() => {
     getReviews();
     getGames();
