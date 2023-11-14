@@ -18,6 +18,13 @@ export default function SearchResults() {
     return stringArr.join(" ");
   }
 
+  async function addNewGame(event) {
+    event.preventDefault();
+    const API = `https://hapigamr.onrender.com/games?searchTerm=${params.query}`;
+    const res = await axios.post(API);
+    window.location.href = `./${converToTitleCase(params.query)}`;
+  }
+
   async function getResults() {
     const API = `https://hapigamr.onrender.com/games?title=${converToTitleCase(
       params.query
@@ -28,22 +35,32 @@ export default function SearchResults() {
 
   return (
     <main>
-      <h2>Results for "{converToTitleCase(params.query)}"</h2>
-      <ul>
-        {results.map((result) => {
-          return (
-            <Link key={result._id} to={`/game/${result._id}`}>
-              <li>
-                {result.title} ({result.releaseYear})
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-      <p>
-        Can't find what you're looking for? Click <Link to={"/"}>here</Link> to
-        add a new game.
-      </p>
+      <h2>Results for "{params.query}"</h2>
+
+      {results.length ? (
+        <ul>
+          {results.map((result) => {
+            return (
+              <Link key={result._id} to={`/game/${result._id}`}>
+                <li>
+                  {result.title} ({result.releaseYear})
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+      ) : (
+        <>
+          <p>No results found.</p>
+          <p>
+            Can't find what you're looking for?{" "}
+            <a href="#" onClick={addNewGame}>
+              Click here
+            </a>{" "}
+            to add a new game.
+          </p>
+        </>
+      )}
     </main>
   );
 }
