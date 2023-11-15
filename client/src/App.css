@@ -92,8 +92,9 @@ header ul {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.33);
   display: flex;
-  justify-content: center;
   height: 100dvh;
+  justify-content: center;
+  left: 0;
   position: fixed;
   top: 0;
   width: 100dvw;
