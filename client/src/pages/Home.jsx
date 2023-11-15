@@ -22,6 +22,7 @@ export default function Home({
                 key={review._id}
                 username={review.username}
                 userRating={review.userRating}
+                review={review}
               />
             );
           })}

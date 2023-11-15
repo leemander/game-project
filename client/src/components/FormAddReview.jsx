@@ -6,14 +6,16 @@
 
 // userRating used twice in below
 // name of buttons they are currently saying submit
-
+import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Form({ reviews, setReviews, review, setReview }) {
+export default function Form({ reviews, setReviews, review /*setReview*/ }) {
+  const { user } = useAuth0();
+
   const [formData, setFormData] = useState(
     review ?? {
-      username: "",
+      username: user.nickname,
       gameId: "",
       userRating: "",
       comments: "",
@@ -29,19 +31,20 @@ export default function Form({ reviews, setReviews, review, setReview }) {
     const API = `https://hapigamr.onrender.com/reviews`;
     const res = await axios.post(API, formData);
     setReviews([...reviews, res.data]);
+    setReview(res.data);
   }
 
   async function updateReview(event) {
     event.preventDefault();
     const API = `https://hapigamr.onrender.com/reviews/${review._id}`;
     await axios.put(API, formData);
-    setReview(formData);
+    window.location.reload();
   }
 
   return (
     <>
-      <form onSubmit={review?._id ? updateReview : addReview}>
-        <input
+      <form onSubmit={review?.gameId ? updateReview : addReview}>
+        {/* <input
           name="username"
           placeholder="Username"
           onChange={handleChange}
@@ -52,21 +55,26 @@ export default function Form({ reviews, setReviews, review, setReview }) {
           placeholder="Game ID"
           onChange={handleChange}
           value={formData.gameId}
-        />
-        <input
-          name="userRating"
-          placeholder="User Rating"
-          onChange={handleChange}
-          value={formData.userRating}
-        />
-        <input
+        /> */}
+        <label htmlFor="user-rating">
+          User rating:
+          <input
+            id="user-rating"
+            name="userRating"
+            placeholder="User Rating"
+            onChange={handleChange}
+            value={formData.userRating}
+          />
+        </label>
+
+        <textarea
           name="comments"
           placeholder="User Comments"
           onChange={handleChange}
           value={formData.comments}
         />
 
-        <button>{review?._id ? "Update review" : "Submit review"}</button>
+        <button>{review?.gameId ? "Update review" : "Submit review"}</button>
       </form>
     </>
   );

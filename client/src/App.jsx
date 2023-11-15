@@ -67,7 +67,7 @@ function App() {
             {isAuthenticated ? <LogoutButton /> : <LoginButton />}
           </div>
 
-          <FormAddGame
+          {/* <FormAddGame
             games={games}
             setGames={setGames}
             game={game}
@@ -80,7 +80,7 @@ function App() {
             review={review}
             setReview={setReview}
           />
-          
+           */}
         </header>
 
         <Routes>

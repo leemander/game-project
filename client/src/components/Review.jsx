@@ -2,11 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import ReviewModal from "./ReviewModal";
+import FormAddReview from "./FormAddReview";
 
 export default function Review({
   comments,
   gameId,
   id,
+  review,
   username,
   userRating,
   deleteReview,
@@ -18,6 +21,8 @@ export default function Review({
     getGame();
   }, []);
 
+  const [showModal, setShowModal] = useState(false);
+
   async function getGame() {
     const API = `https://hapigamr.onrender.com/games?_id=${gameId}`;
     const result = await axios.get(API);
@@ -26,22 +31,27 @@ export default function Review({
 
   if (game.title) {
     return (
-      <article className="review">
-        <img src={game.boxArtUrl} alt={game.title} />
-        <div className="review__content">
-          {user && username === user.nickname && (
-            <div className="review__controls">
-              <button>Update</button>
-              <button onClick={() => deleteReview(id)}>Delete</button>
-            </div>
-          )}
-          <h3>
-            {username} rated <Link to={`/game/${gameId}`}>{game.title}</Link>{" "}
-            {userRating}/10
-          </h3>
-          <p>"{comments}"</p>
-        </div>
-      </article>
+      <>
+        <article className="review">
+          <img src={game.boxArtUrl} alt={game.title} />
+          <div className="review__content">
+            {user && username === user.nickname && (
+              <div className="review__controls">
+                <button onClick={() => setShowModal(true)}>Update</button>
+                <button onClick={() => deleteReview(id)}>Delete</button>
+              </div>
+            )}
+            <h3>
+              {username} rated <Link to={`/game/${gameId}`}>{game.title}</Link>{" "}
+              {userRating}/10
+            </h3>
+            <p>"{comments}"</p>
+          </div>
+        </article>
+        {showModal && (
+          <ReviewModal review={review} setShowModal={setShowModal} />
+        )}
+      </>
     );
   }
 }
