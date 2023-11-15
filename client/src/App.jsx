@@ -15,8 +15,8 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [game, setGame] = useState({});
-  const [review, setReview] = useState({});
+  // const [game, setGame] = useState({});
+  // const [review, setReview] = useState({});
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
@@ -27,7 +27,7 @@ function App() {
   async function getReviews() {
     const API = "https://hapigamr.onrender.com/reviews";
     const res = await axios.get(API);
-    setReviews(res.data);
+    setReviews(res.data.reverse());
   }
 
   async function getGames() {
@@ -84,10 +84,7 @@ function App() {
               path="/"
               element={
                 <Home
-                  games={games}
-                  setGames={setGames}
                   reviews={reviews}
-                  setReviews={setReviews}
                   searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
                   deleteReview={deleteReview}
