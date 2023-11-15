@@ -1,0 +1,14 @@
+img {
+  max-width: 100%;
+}
+
+.review {
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1em;
+}
+
+.review > img {
+  max-width: 300px;
+}
