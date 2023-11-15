@@ -6,12 +6,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import About from "./pages/About";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import SearchResults from "./pages/SearchResults";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
-import Profile from "./components/Profile";
-import FormAddGame from "./components/FormAddGame";
-import FormAddReview from "./components/FormAddReview";
 
 function App() {
   const [reviews, setReviews] = useState([]);
@@ -48,9 +46,6 @@ function App() {
       getReviews();
     }
   }
-
-  console.log(user);
-
   return (
     <>
       <BrowserRouter>
@@ -63,11 +58,11 @@ function App() {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
+                  <Link to="/profile"> Profile</Link>
+                </li>
+                <li>
                   <Link to="/about">About</Link>
                 </li>
-                {/* <li>
-                  <Link to="/profile"> Profile</Link>
-                </li> */}
               </ul>
             </nav>
             <div className="header__user">
@@ -81,23 +76,8 @@ function App() {
               )}
               {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </div>
-            {/* <FormAddGame
-              games={games}
-              setGames={setGames}
-              game={game}
-              setGame={setGame}
-            />
-            
-            <FormAddReview
-              reviews={reviews}
-              setReviews={setReviews}
-              review={review}
-              setReview={setReview}
-            />
-             */}
           </div>
         </header>
-
         <div className="container">
           <Routes>
             <Route
@@ -120,7 +100,7 @@ function App() {
               path="/search/:query"
               element={<SearchResults games={games} />}
             />
-            {/* <Route path="/profile" element={<Profile />} /> */}
+            <Route path="/profile" element={<Profile reviews={reviews} />} />
           </Routes>
         </div>
       </BrowserRouter>
