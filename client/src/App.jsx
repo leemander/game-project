@@ -44,6 +44,8 @@ function App() {
     getReviews();
   }
 
+  console.log(user);
+
   return (
     <>
       <BrowserRouter>
@@ -65,6 +67,13 @@ function App() {
             </nav>
             <div className="header__user">
               <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
+              {user && (
+                <img
+                  src={user.picture}
+                  alt={user.nickname}
+                  className="user__img"
+                />
+              )}
               {isAuthenticated ? <LogoutButton /> : <LoginButton />}
             </div>
             {/* <FormAddGame

@@ -30,6 +30,13 @@ header ul {
   gap: 1em;
 }
 
+.user__img {
+  aspect-ratio: 1;
+  border: 2px solid;
+  border-radius: 50%;
+  height: 2em;
+}
+
 .search {
   display: flex;
 }
