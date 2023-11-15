@@ -2,6 +2,24 @@ img {
   max-width: 100%;
 }
 
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+header ul {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+}
+
+.header__user {
+  align-items: center;
+  display: flex;
+  gap: 1em;
+}
+
 .review {
   border: 1px solid;
   display: grid;
@@ -11,4 +29,15 @@ img {
 
 .review > img {
   max-width: 300px;
+}
+
+.review__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.review__controls {
+  display: flex;
+  gap: 1em;
+  margin-left: auto;
 }
