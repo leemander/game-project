@@ -43,8 +43,13 @@ export default function Form({ reviews, setReviews, review /*setReview*/ }) {
 
   return (
     <>
-      <form onSubmit={review?.gameId ? updateReview : addReview}>
-        {/* <input
+      <div className="formBox">
+        <h3>UPDATE YOUR REVIEW</h3>
+        <form
+          className="addReviewForm"
+          onSubmit={review?.gameId ? updateReview : addReview}
+        >
+          {/* <input
           name="username"
           placeholder="Username"
           onChange={handleChange}
@@ -56,26 +61,29 @@ export default function Form({ reviews, setReviews, review /*setReview*/ }) {
           onChange={handleChange}
           value={formData.gameId}
         /> */}
-        <label htmlFor="user-rating">
-          User rating:
-          <input
-            id="user-rating"
-            name="userRating"
-            placeholder="User Rating"
+          <label htmlFor="user-rating">
+            <h3>User rating</h3>
+            <input
+              id="user-rating"
+              name="userRating"
+              placeholder="User Rating"
+              onChange={handleChange}
+              value={formData.userRating}
+            />
+          </label>
+          <h3>Comments</h3>
+          <textarea
+            name="comments"
+            placeholder="User Comments"
             onChange={handleChange}
-            value={formData.userRating}
+            value={formData.comments}
           />
-        </label>
 
-        <textarea
-          name="comments"
-          placeholder="User Comments"
-          onChange={handleChange}
-          value={formData.comments}
-        />
-
-        <button>{review?.gameId ? "Update review" : "Submit review"}</button>
-      </form>
+          <button className="addReviewbutton">
+            {review?.gameId ? "Update review" : "Submit review"}
+          </button>
+        </form>
+      </div>
     </>
   );
 }
