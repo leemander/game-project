@@ -12,7 +12,6 @@ export default function Review({
   deleteReview,
 }) {
   const { user } = useAuth0();
-  console.log(user);
 
   const [game, setGame] = useState({});
   useEffect(() => {

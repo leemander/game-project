@@ -9,16 +9,18 @@ export default function SearchBar({ searchTerm, setSearchTerm }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="search">Search for a game:</label>
-      <input
-        id="search"
-        name="sarch"
-        onChange={handleChange}
-        required
-        type="text"
-        value={searchTerm}
-      />
+    <form className="search" onSubmit={handleSubmit}>
+      <label htmlFor="search">
+        Search for a game:
+        <input
+          id="search"
+          name="sarch"
+          onChange={handleChange}
+          required
+          type="text"
+          value={searchTerm}
+        />
+      </label>
       <button>Search</button>
     </form>
   );

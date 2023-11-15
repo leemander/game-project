@@ -20,6 +20,20 @@ header ul {
   gap: 1em;
 }
 
+.search {
+  display: flex;
+}
+
+.search label {
+  display: flex;
+  gap: 0.5em;
+}
+
+.reviews {
+  display: grid;
+  gap: 1em;
+}
+
 .review {
   border: 1px solid;
   display: grid;
