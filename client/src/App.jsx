@@ -39,73 +39,90 @@ function App() {
   }
 
   async function deleteReview(id) {
-    const API = `https://hapigamr.onrender.com/reviews/${id}`;
-    const res = await axios.delete(API);
-    getReviews();
+    const confirmation = confirm(
+      "Are you sure you want to delete this review? This can't be undone."
+    );
+    if (confirmation) {
+      const API = `https://hapigamr.onrender.com/reviews/${id}`;
+      const res = await axios.delete(API);
+      getReviews();
+    }
   }
+
+  console.log(user);
 
   return (
     <>
       <BrowserRouter>
         <header>
-          <h1>hAPIgamr</h1>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              {/* <li>
-                <Link to="/profile"> Profile</Link>
-              </li> */}
-            </ul>
-          </nav>
-          <div className="header__user">
-            <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
-            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+          <div className="container">
+            <h1>hAPIgamr</h1>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                {/* <li>
+                  <Link to="/profile"> Profile</Link>
+                </li> */}
+              </ul>
+            </nav>
+            <div className="header__user">
+              <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
+              {user && (
+                <img
+                  src={user.picture}
+                  alt={user.nickname}
+                  className="user__img"
+                />
+              )}
+              {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+            </div>
+            {/* <FormAddGame
+              games={games}
+              setGames={setGames}
+              game={game}
+              setGame={setGame}
+            />
+            
+            <FormAddReview
+              reviews={reviews}
+              setReviews={setReviews}
+              review={review}
+              setReview={setReview}
+            />
+             */}
           </div>
-
-          {/* <FormAddGame
-            games={games}
-            setGames={setGames}
-            game={game}
-            setGame={setGame}
-          />
-          
-          <FormAddReview
-            reviews={reviews}
-            setReviews={setReviews}
-            review={review}
-            setReview={setReview}
-          />
-           */}
         </header>
 
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                games={games}
-                setGames={setGames}
-                reviews={reviews}
-                setReviews={setReviews}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                deleteReview={deleteReview}
-              />
-            }
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/game/:id" element={<Game />} />
-          <Route
-            path="/search/:query"
-            element={<SearchResults games={games} />}
-          />
-          {/* <Route path="/profile" element={<Profile />} /> */}
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  games={games}
+                  setGames={setGames}
+                  reviews={reviews}
+                  setReviews={setReviews}
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  deleteReview={deleteReview}
+                />
+              }
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/game/:id" element={<Game />} />
+            <Route
+              path="/search/:query"
+              element={<SearchResults games={games} />}
+            />
+            {/* <Route path="/profile" element={<Profile />} /> */}
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );

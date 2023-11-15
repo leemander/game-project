@@ -5,6 +5,7 @@ import { useParams, Link } from "react-router-dom";
 export default function SearchResults({ games }) {
   const params = useParams();
   const [results, setResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getResults();
@@ -21,6 +22,7 @@ export default function SearchResults({ games }) {
   async function addNewGame(event) {
     event.preventDefault();
     const API = `https://hapigamr.onrender.com/games?searchTerm=${params.query}`;
+    setIsLoading(true);
     await axios.post(API);
     window.location.reload();
   }
@@ -37,12 +39,19 @@ export default function SearchResults({ games }) {
       <h2>Results for "{params.query}"</h2>
 
       {results.length ? (
-        <ul>
+        <ul className="results">
           {results.map((result) => {
             return (
               <Link key={result._id} to={`/game/${result._id}`}>
-                <li>
-                  {result.title} ({result.releaseYear})
+                <li className="result">
+                  <img
+                    src={result.boxArtUrl}
+                    alt={result.title}
+                    className="result__img"
+                  />
+                  <h3>
+                    {result.title} ({result.releaseYear})
+                  </h3>
                 </li>
               </Link>
             );
@@ -51,13 +60,17 @@ export default function SearchResults({ games }) {
       ) : (
         <p>No results found.</p>
       )}
-      <p>
-        Can't find what you're looking for?{" "}
-        <a href="#" onClick={addNewGame}>
-          Click here
-        </a>{" "}
-        to add a new game.
-      </p>
+      {!isLoading ? (
+        <p>
+          Can't find what you're looking for?{" "}
+          <a href="#" onClick={addNewGame}>
+            Click here
+          </a>{" "}
+          to add a new game.
+        </p>
+      ) : (
+        <p>Adding new game...</p>
+      )}
     </main>
   );
 }
