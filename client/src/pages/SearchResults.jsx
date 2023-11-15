@@ -10,19 +10,19 @@ export default function SearchResults({ games }) {
     getResults();
   }, [games]);
 
-  function converToTitleCase(string) {
-    let stringArr = string.trim().toLowerCase().split(" ");
-    stringArr = stringArr.map((word) => {
-      return word[0].toUpperCase() + word.slice(1);
-    });
-    return stringArr.join(" ");
-  }
+  // function convertToTitleCase(string) {
+  //   let stringArr = string.trim().toLowerCase().split(" ");
+  //   stringArr = stringArr.map((word) => {
+  //     return word[0].toUpperCase() + word.slice(1);
+  //   });
+  //   return stringArr.join(" ");
+  // }
 
   async function addNewGame(event) {
     event.preventDefault();
     const API = `https://hapigamr.onrender.com/games?searchTerm=${params.query}`;
-    const res = await axios.post(API);
-    window.location.href = `./${converToTitleCase(params.query)}`;
+    await axios.post(API);
+    window.location.reload();
   }
 
   function getResults() {
@@ -49,17 +49,15 @@ export default function SearchResults({ games }) {
           })}
         </ul>
       ) : (
-        <>
-          <p>No results found.</p>
-          <p>
-            Can't find what you're looking for?{" "}
-            <a href="#" onClick={addNewGame}>
-              Click here
-            </a>{" "}
-            to add a new game.
-          </p>
-        </>
+        <p>No results found.</p>
       )}
+      <p>
+        Can't find what you're looking for?{" "}
+        <a href="#" onClick={addNewGame}>
+          Click here
+        </a>{" "}
+        to add a new game.
+      </p>
     </main>
   );
 }
