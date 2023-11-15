@@ -39,9 +39,14 @@ function App() {
   }
 
   async function deleteReview(id) {
-    const API = `https://hapigamr.onrender.com/reviews/${id}`;
-    const res = await axios.delete(API);
-    getReviews();
+    const confirmation = confirm(
+      "Are you sure you want to delete this review? This can't be undone."
+    );
+    if (confirmation) {
+      const API = `https://hapigamr.onrender.com/reviews/${id}`;
+      const res = await axios.delete(API);
+      getReviews();
+    }
   }
 
   console.log(user);
