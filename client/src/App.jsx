@@ -10,11 +10,15 @@ import SearchResults from "./pages/SearchResults";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
+import FormAddGame from "./components/FormAddGame";
+import FormAddReview from "./components/FormAddReview";
 
 function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [game, setGame] = useState({});
+  const [review, setReview] = useState({});
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
@@ -62,6 +66,21 @@ function App() {
             <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
             {isAuthenticated ? <LogoutButton /> : <LoginButton />}
           </div>
+
+          <FormAddGame
+            games={games}
+            setGames={setGames}
+            game={game}
+            setGame={setGame}
+          />
+          
+          <FormAddReview
+            reviews={reviews}
+            setReviews={setReviews}
+            review={review}
+            setReview={setReview}
+          />
+          
         </header>
 
         <Routes>
