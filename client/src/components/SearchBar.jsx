@@ -5,7 +5,7 @@ export default function SearchBar({ searchTerm, setSearchTerm }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    window.location.href = `/search/${searchTerm}`;
+    window.location.href = `./search/${searchTerm}`;
   }
 
   return (
