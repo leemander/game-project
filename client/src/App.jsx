@@ -37,30 +37,50 @@ function App() {
     const res = await axios.get(API);
     setGames(res.data);
   }
+
+  async function deleteReview(id) {
+    const API = `https://hapigamr.onrender.com/reviews/${id}`;
+    const res = await axios.delete(API);
+    getReviews();
+  }
+
   return (
     <>
       <BrowserRouter>
         <header>
           <h1>hAPIgamr</h1>
-          <Profile></Profile>
-          <LoginButton></LoginButton>
-          {/* {isAuthenticated ? <LogOutButton /> : <LogInButton />} */}
-          <LogoutButton></LogoutButton>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              {/* <li>
+                <Link to="/profile"> Profile</Link>
+              </li> */}
+            </ul>
+          </nav>
+          <div className="header__user">
+            <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
+            {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+          </div>
+
           <FormAddGame
             games={games}
             setGames={setGames}
             game={game}
             setGame={setGame}
           />
+          
           <FormAddReview
             reviews={reviews}
             setReviews={setReviews}
             review={review}
             setReview={setReview}
           />
-          <Link to="/"> Home</Link>
-          <Link to="/about"> About</Link>
-          {/* <Link to="/profile"> Profile</Link> */}
+          
         </header>
 
         <Routes>
@@ -74,6 +94,7 @@ function App() {
                 setReviews={setReviews}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                deleteReview={deleteReview}
               />
             }
           />
