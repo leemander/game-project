@@ -76,7 +76,7 @@ header ul {
 .review {
   border: 1px solid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 30% auto;
   padding: 1em;
 }
 
