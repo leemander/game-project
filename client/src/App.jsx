@@ -15,7 +15,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+  
   const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
     getReviews();
@@ -67,7 +67,6 @@ function App() {
             path="/search/:query"
             element={<SearchResults games={games} />}
           />
-
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </BrowserRouter>
