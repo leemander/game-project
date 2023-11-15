@@ -6,7 +6,13 @@ img {
   max-width: 100%;
 }
 
-header {
+.container {
+  margin: 0 auto;
+  max-width: 1400px;
+  width: calc(100% - 3em);
+}
+
+header > * {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -31,6 +37,28 @@ header ul {
 .search label {
   display: flex;
   gap: 0.5em;
+}
+
+.results {
+  display: grid;
+  gap: 2em;
+  padding: 0;
+}
+
+.result {
+  align-items: center;
+  background-color: #ddd;
+  display: flex;
+  gap: 1em;
+  min-height: 6em;
+  max-width: 25vw;
+  padding: 1em;
+  width: 100%;
+}
+
+.result__img {
+  border: 1px solid;
+  max-width: 100px;
 }
 
 .reviews {

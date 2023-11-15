@@ -37,12 +37,19 @@ export default function SearchResults({ games }) {
       <h2>Results for "{params.query}"</h2>
 
       {results.length ? (
-        <ul>
+        <ul className="results">
           {results.map((result) => {
             return (
               <Link key={result._id} to={`/game/${result._id}`}>
-                <li>
-                  {result.title} ({result.releaseYear})
+                <li className="result">
+                  <img
+                    src={result.boxArtUrl}
+                    alt={result.title}
+                    className="result__img"
+                  />
+                  <h3>
+                    {result.title} ({result.releaseYear})
+                  </h3>
                 </li>
               </Link>
             );
