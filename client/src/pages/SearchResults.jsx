@@ -37,7 +37,6 @@ export default function SearchResults({ games }) {
   return (
     <main>
       <h2>Results for "{params.query}"</h2>
-
       {results.length ? (
         <ul className="results">
           {results.map((result) => {

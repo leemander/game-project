@@ -1,4 +1,4 @@
-import Review from "../components/Review";
+import Reviews from "../components/Reviews";
 import SearchBar from "../components/SearchBar";
 export default function Home({
   reviews,
@@ -9,25 +9,8 @@ export default function Home({
   return (
     <main>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <section className="recent-reviews">
-        <h2>Recent Reviews</h2>
-        <div className="reviews">
-          {reviews.map((review) => {
-            return (
-              <Review
-                comments={review.comments}
-                deleteReview={deleteReview}
-                gameId={review.gameId}
-                id={review._id}
-                key={review._id}
-                username={review.username}
-                userRating={review.userRating}
-                review={review}
-              />
-            );
-          })}
-        </div>
-      </section>
+      <h2>Recent Reviews</h2>
+      <Reviews reviews={reviews} deleteReview={deleteReview} />
     </main>
   );
 }
