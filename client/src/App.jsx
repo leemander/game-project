@@ -15,6 +15,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showMenu, setShowMenu] = useState(false);
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -51,8 +52,29 @@ function App() {
         <header>
           <div className="container">
             <h1>hAPIgamr</h1>
-            <nav>
+            <button onClick={() => setShowMenu(true)}>Show Menu</button>
+            <nav className={showMenu ? "show" : ""}>
+              <button className="nav__close" onClick={() => setShowMenu(false)}>
+                X
+              </button>
               <ul>
+                <li>
+                  <div className="header__user">
+                    <div className="user__greeting">
+                      <span>
+                        {user ? `Welcome, ${user.nickname}` : "Log in?"}
+                      </span>
+                      {user && (
+                        <img
+                          src={user.picture}
+                          alt={user.nickname}
+                          className="user__img"
+                        />
+                      )}
+                    </div>
+                    {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+                  </div>
+                </li>
                 <li>
                   <Link to="/">Home</Link>
                 </li>
@@ -64,17 +86,6 @@ function App() {
                 </li>
               </ul>
             </nav>
-            <div className="header__user">
-              <span>{user ? `Welcome, ${user.nickname}` : "Log in?"}</span>
-              {user && (
-                <img
-                  src={user.picture}
-                  alt={user.nickname}
-                  className="user__img"
-                />
-              )}
-              {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-            </div>
           </div>
         </header>
         <div className="container">
