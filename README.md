@@ -1,4 +1,4 @@
-# Game Project (working title)
+# hAPIgamr
 
 ## Team members
 
