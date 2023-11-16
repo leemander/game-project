@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-oh1n6e032iflyamq.uk.auth0.com"
       clientId="9hmYtttmuJvsXCnWLYzc7L0GpDGiPWUK"
       authorizationParams={{
-        redirect_uri: "http://localhost:5173",
+        redirect_uri: "https://game-project-psi.vercel.app/",
       }}
     >
       <App />
