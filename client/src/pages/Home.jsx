@@ -10,7 +10,7 @@ export default function Home({
     <main>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <h2>Recent Reviews</h2>
-      <Reviews reviews={reviews} deleteReview={deleteReview} />
+      <Reviews reviews={reviews.slice(0, 20)} deleteReview={deleteReview} />
     </main>
   );
 }

@@ -15,10 +15,9 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [game, setGame] = useState({});
-  // const [review, setReview] = useState({});
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
+
   useEffect(() => {
     getReviews();
     getGames();
@@ -42,8 +41,8 @@ function App() {
     );
     if (confirmation) {
       const API = `https://hapigamr.onrender.com/reviews/${id}`;
-      const res = await axios.delete(API);
-      getReviews();
+      await axios.delete(API);
+      window.location.reload();
     }
   }
   return (
@@ -92,12 +91,26 @@ function App() {
               }
             />
             <Route path="/about" element={<About />} />
-            <Route path="/game/:id" element={<Game />} />
+            <Route
+              path="/game/:id"
+              element={
+                <Game
+                  reviews={reviews}
+                  deleteReview={deleteReview}
+                  user={user}
+                />
+              }
+            />
             <Route
               path="/search/:query"
               element={<SearchResults games={games} />}
             />
-            <Route path="/profile" element={<Profile reviews={reviews} />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile reviews={reviews} deleteReview={deleteReview} />
+              }
+            />
           </Routes>
         </div>
       </BrowserRouter>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Reviews from "../components/Reviews";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function Profile({ reviews }) {
+export default function Profile({ reviews, deleteReview }) {
   const { user } = useAuth0();
   const [userReviews, setUserReviews] = useState([]);
 
@@ -23,11 +23,7 @@ export default function Profile({ reviews }) {
       {user ? (
         <>
           <h2>{user.nickname}'s Reviews</h2>
-          {userReviews.length ? (
-            <Reviews reviews={userReviews} />
-          ) : (
-            <p>No reviews found.</p>
-          )}
+          <Reviews reviews={userReviews} deleteReview={deleteReview} />
         </>
       ) : (
         <p>Log in to see your reviews.</p>

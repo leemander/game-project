@@ -95,6 +95,12 @@ header ul {
   margin-left: auto;
 }
 
+.game__img {
+  display: block;
+  margin: 1em auto;
+  max-width: 500px;
+}
+
 .modal-backdrop {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.33);
