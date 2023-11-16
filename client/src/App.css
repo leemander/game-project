@@ -206,6 +206,11 @@ nav ul {
   max-width: 500px;
 }
 
+.game__add-button {
+  display: block;
+  margin: 1em auto 0 auto;
+}
+
 .modal-backdrop {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.33);
