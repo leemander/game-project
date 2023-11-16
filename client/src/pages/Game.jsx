@@ -57,15 +57,18 @@ export default function Game({ reviews, deleteReview }) {
 
   return (
     <>
-      <main>
+      <main className="game">
         {!loading && (
           <>
+            <small>
+              <a href="#reviews">skip to reviews</a>
+            </small>
             <h2>
               {game.title} ({game.releaseYear})
             </h2>
-            <div>
-              <span>Genre: {game.genre} </span>
-              <span>| MobyGames user score: {game.userRating}</span>
+            <div className="game__details">
+              <span>Genre: {game.genre}</span>
+              <span>MobyGames user score: {game.userRating}</span>
             </div>
             <img
               src={game.boxArtUrl}
@@ -74,7 +77,7 @@ export default function Game({ reviews, deleteReview }) {
             ></img>
             <div dangerouslySetInnerHTML={{ __html: game.description }}></div>
             {reviews.length && (
-              <section className="reviews">
+              <section className="reviews" id="reviews">
                 {userReview.gameId && (
                   <>
                     <h3>Your Review</h3>

@@ -98,10 +98,14 @@ function App() {
                   searchTerm={searchTerm}
                   setSearchTerm={setSearchTerm}
                   deleteReview={deleteReview}
+                  setShowMenu={setShowMenu}
                 />
               }
             />
-            <Route path="/about" element={<About />} />
+            <Route
+              path="/about"
+              element={<About setShowMenu={setShowMenu} />}
+            />
             <Route
               path="/game/:id"
               element={
@@ -119,7 +123,11 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile reviews={reviews} deleteReview={deleteReview} />
+                <Profile
+                  reviews={reviews}
+                  deleteReview={deleteReview}
+                  setShowMenu={setShowMenu}
+                />
               }
             />
           </Routes>

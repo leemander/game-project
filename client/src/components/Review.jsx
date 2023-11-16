@@ -32,14 +32,14 @@ export default function Review({
     return (
       <>
         <article className="review">
+          {user && username === user.nickname && (
+            <div className="review__controls">
+              <button onClick={() => setShowModal(true)}>Update</button>
+              <button onClick={() => deleteReview(id)}>Delete</button>
+            </div>
+          )}
           <img src={game.boxArtUrl} alt={game.title} />
           <div className="review__content">
-            {user && username === user.nickname && (
-              <div className="review__controls">
-                <button onClick={() => setShowModal(true)}>Update</button>
-                <button onClick={() => deleteReview(id)}>Delete</button>
-              </div>
-            )}
             <h3>
               {username} rated <Link to={`/game/${gameId}`}>{game.title}</Link>{" "}
               {userRating}/10

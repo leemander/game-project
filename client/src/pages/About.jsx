@@ -1,4 +1,11 @@
-export default function About() {
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+export default function About({ setShowMenu }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location]);
   return (
     <div>
       <h1 className="AbouthAPIgamr">About hAPIgamr</h1>
