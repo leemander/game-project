@@ -1,6 +1,6 @@
 import FormAddReview from "./FormAddReview";
 
-export default function ReviewModal({ review, setShowModal }) {
+export default function ReviewModal({ review, setShowModal, gameId }) {
   function handleClick(e) {
     if (e.target.className === "modal-backdrop") {
       setShowModal(false);
@@ -11,7 +11,7 @@ export default function ReviewModal({ review, setShowModal }) {
     <div className="modal-backdrop" onClick={handleClick}>
       <dialog className="review-modal" open>
         <button onClick={() => setShowModal(false)}>Close</button>
-        <FormAddReview review={review} />
+        <FormAddReview review={review} gameId={gameId} />
       </dialog>
     </div>
   );

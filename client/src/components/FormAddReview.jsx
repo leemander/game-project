@@ -10,13 +10,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Form({ reviews, setReviews, review /*setReview*/ }) {
+export default function Form({ reviews, setReviews, review, gameId }) {
   const { user } = useAuth0();
 
   const [formData, setFormData] = useState(
     review ?? {
       username: user.nickname,
-      gameId: "",
+      gameId: gameId,
       userRating: "",
       comments: "",
     }
@@ -30,8 +30,7 @@ export default function Form({ reviews, setReviews, review /*setReview*/ }) {
     event.preventDefault();
     const API = `https://hapigamr.onrender.com/reviews`;
     const res = await axios.post(API, formData);
-    setReviews([...reviews, res.data]);
-    setReview(res.data);
+    window.location.reload();
   }
 
   async function updateReview(event) {
@@ -44,23 +43,11 @@ export default function Form({ reviews, setReviews, review /*setReview*/ }) {
   return (
     <>
       <div className="formBox">
-        <h3>UPDATE YOUR REVIEW</h3>
+        <h3>{review?.gameId ? "Update" : "Add"} Your Review</h3>
         <form
           className="addReviewForm"
           onSubmit={review?.gameId ? updateReview : addReview}
         >
-          {/* <input
-          name="username"
-          placeholder="Username"
-          onChange={handleChange}
-          value={formData.username}
-        />
-        <input
-          name="gameId"
-          placeholder="Game ID"
-          onChange={handleChange}
-          value={formData.gameId}
-        /> */}
           <label htmlFor="user-rating">
             <h3>User rating</h3>
             <input
