@@ -139,7 +139,7 @@ header ul {
 }
 
 .formBox input {
-  width: 15px;
+  width: 18px;
 }
 
 .formBox textarea {
@@ -153,4 +153,12 @@ header ul {
   margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.createdBy {
+  text-align: center;
+}
+
+.AbouthAPIgamr {
+  text-align: center;
 }
