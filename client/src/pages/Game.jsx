@@ -38,7 +38,7 @@ export default function Game({ reviews, deleteReview }) {
 
   function getUserReview() {
     const userReviewArray = filteredReviews.filter(
-      (review) => review.username === user.nickname
+      (review) => review.username === user?.nickname
     );
     if (userReviewArray.length) {
       setUserReview(userReviewArray[0]);
