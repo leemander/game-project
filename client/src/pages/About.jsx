@@ -3,7 +3,7 @@ export default function About() {
     <div>
       <h1 className="AbouthAPIgamr">About hAPIgamr</h1>
 
-      <section>
+      <section className="aboutPersonal">
         <p>
           Your personal online haven for gaming enthusiasts! At hAPIgamr, we've
           reimagined the gaming experience, creating a space where your gaming
@@ -11,8 +11,8 @@ export default function About() {
         </p>
       </section>
 
-      <section>
-        <h3>Our Unique Platform</h3>
+      <section className="aboutOur">
+        <h3 className="aboutOurUni">Our Unique Platform</h3>
         <ul>
           <li>
             <strong>Your Gaming Library:</strong> hAPIgamr is more than just a
@@ -37,9 +37,10 @@ export default function About() {
           </li>
         </ul>
       </section>
+      <p></p>
 
-      <section>
-        <h3>Features We Love</h3>
+      <section className="aboutFeatures">
+        <h3 className="aboutFeaturesWe">Features We Love</h3>
         <ul>
           <li>
             <strong>API-Powered Reviews:</strong> Access a vast database of
@@ -66,8 +67,8 @@ export default function About() {
           </li>
         </ul>
       </section>
-
-      <section>
+      <p></p>
+      <section className="aboutJoin">
         <h2>Join the hAPIgamr Community</h2>
         <p>
           Ready to level up your gaming experience? Join hAPIgamr now and become

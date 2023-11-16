@@ -209,10 +209,11 @@ nav ul {
   box-sizing: border-box;
   margin: 10px;
   padding: 10px;
-  border: 2px solid rgb(2, 2, 2);
+  border: 2px solid #d8315b;
   display: block;
   text-align: center;
-  background-color: rgb(0, 255, 98);
+  background-color: #1f2041;
+  color: #fbfbfb;
 }
 
 .formBox h3 {
@@ -240,10 +241,37 @@ nav ul {
   margin-bottom: 10px;
 }
 
-.createdBy {
+.createdBy,
+.aboutPersonal,
+.aboutOurUni,
+.aboutFeaturesWe {
   text-align: center;
 }
 
 .AbouthAPIgamr {
   text-align: center;
+}
+
+.aboutOur {
+  border: 1px solid;
+
+  padding: 1em;
+}
+.aboutFeatures {
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: #fbfbfb;
+  padding: 1em;
+}
+
+.aboutJoin {
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: #fbfbfb;
+  padding: 1em;
+  text-align: center;
+}
+
+.createdBy {
+  color: #d8315b;
 }
