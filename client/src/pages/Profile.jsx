@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import Reviews from "../components/Reviews";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useLocation } from "react-router-dom";
 
-export default function Profile({ reviews, deleteReview }) {
+export default function Profile({ reviews, deleteReview, setShowMenu }) {
   const { user } = useAuth0();
   const [userReviews, setUserReviews] = useState([]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setShowMenu(false);
+  }, [location]);
 
   function getUserReviews() {
     setUserReviews(
