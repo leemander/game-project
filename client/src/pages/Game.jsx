@@ -99,7 +99,7 @@ export default function Game({ reviews, deleteReview }) {
                 />
               </section>
             )}
-            {!userReview.gameId && (
+            {user && !userReview.gameId && (
               <button onClick={toggleReviewModal} className="game__add-button">
                 Add Review
               </button>
